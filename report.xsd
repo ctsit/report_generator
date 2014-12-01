@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+
+<!-- ########## TYPE DEFINITIONS BEGIN ##########  -->
+<!-- define common types to be reused -->
+<!-- count_week_to_week is for displaying changes in totals week-to-week -->
+<xs:complexType name="count_week_to_week">
+  <xs:sequence>
+    <xs:element name="total" type="xs:integer"/>
+    <xs:element name="previous" type="xs:integer"/>
+    <xs:element name="delta" type="xs:integer"/>
+  </xs:sequence>
+</xs:complexType>
+
+<!-- date_value_pair is used to group a test value with a date -->
+<xs:complexType name="date_value_pair">
+  <xs:all>
+    <xs:element name="date" type="xs:date"/>
+    <xs:element name="value" type="xs:integer"/>
+  </xs:all>
+</xs:complexType>
+
+<!-- site groups the weekly results for a site and the data for previous runs -->
+<xs:complexType name="site">
+  <xs:sequence>
+    <xs:element name="test" type="test" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:attribute name="name" type="xs:string"/>
+</xs:complexType>
+
+<xs:complexType name="test">
+  <xs:sequence>
+    <xs:element name="current_run" type="xs:integer"/>
+    <xs:element name="previous_runs">
+      <xs:complexType>
+        <xs:sequence>
+          <xs:element name="date_value_pair" type="date_value_pair" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:element>
+  </xs:sequence>
+  <xs:attribute name="test_name" type="xs:string"/>
+</xs:complexType>
+
+
+<!-- define complex types as extensions of common types -->
+<!-- test_count_week_to_week extends count_week_to_week but
+must include a test name                                -->
+<xs:complexType name="test_count_week_to_week">
+  <xs:complexContent>
+    <xs:extension base="count_week_to_week">
+      <xs:attribute name="test_name" type="xs:string"/>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+<!-- ########## TYPE DEFINITIONS END ##########  -->
+
+<!-- ########## XML DEFINITION BEGINS ##########  -->
+
+<xs:element name="summary_report">
+  <xs:complexType>
+    <xs:sequence>
+
+        <xs:element name="header">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="date" type="xs:date"/>
+              <xs:element name="project" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="summary">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="subject_count" type="count_week_to_week"/>
+              <xs:element name="tests">
+                <xs:complexType>
+                  <xs:sequence>
+                    <!-- lists tests across all sites. different than individual site test results below. -->
+                    <xs:element name="test_all_sites" type="test_count_week_to_week" maxOccurs="unbounded"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="sites">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="site" type="site" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<!-- ########## XML DEFINITION ENDS##########  -->
+</xs:schema>
+
