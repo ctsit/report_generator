@@ -1,80 +1,84 @@
 <?xml version='1.0' encoding='US-ASCII'?>
-<summary_report xmlns="report.xsd">
+<summary_report>
 
 	<header>
 		<!-- date that report is generated on -->
-		<date></date>
+		<date>2012-08-22</date>
 		<!-- project name: read from settings.ini -->
-		<project></project>
+		<project>A Project Name</project>
 	</header>
 
 	<!-- summarized counts across all project sites -->
 	<summary>
 		<subject_count>
 			<!-- current value -->
-			<total></total>
+			<total>100</total>
 			<!-- previous week's value -->
-			<previous></previous>
+			<previous>90</previous>
 			<!-- change across the week -->
-			<delta></delta>
+			<delta>10</delta>
 		</subject_count>
 		<tests>
-			<test name="test1">
-				<total></total>
-				<previous_total></previous_total>
+			<test_all_sites test_name="test1">
+				<!-- current value -->
+				<total>100</total>
+				<!-- previous week's value -->
+				<previous>90</previous>
 				<!-- change across the week -->
-				<delta></delta>
-			</test>
-			<test name="test2">
-				<total></total>
-				<previous_total></previous_total>
+				<delta>10</delta>
+			</test_all_sites>
+			<test_all_sites test_name="test2">
+				<!-- current value -->
+				<total>100</total>
+				<!-- previous week's value -->
+				<previous>90</previous>
 				<!-- change across the week -->
-				<delta></delta>
-			</test>
+				<delta>10</delta>
+			</test_all_sites>
 		</tests>
 	</summary>
 
 	<sites>
 		<site name="site1">
-				<test name="test1">
-					<!-- current number of tests imported over past time interval (usually a week) -->
-					<current_run></current_run>
-					<!-- past number of tests over each subsequent run -->
-					<previous_runs>
-						<date>
-							<date></date>
-							<value></value>
-						</date>
-						<date>
-							<date></date>
-							<value></value>
-						</date>
-						<date>
-							<date></date>
-							<value></value>
-						</date>
-					</previous_runs>
-				</test>
+			<test test_name="test1">
+				<!-- current number of tests imported over past time interval (usually a week) -->
+				<current_run>12</current_run>
+				<!-- past number of tests over each subsequent run -->
+				<previous_runs>
+					<date_value_pair>
+						<date>2012-08-22</date>
+						<value>10</value>
+					</date_value_pair>
+					<date_value_pair>
+						<date>2012-08-22</date>
+						<value>10</value>
+					</date_value_pair>
+					<date_value_pair>
+						<date>2012-08-22</date>
+						<value>11</value>
+					</date_value_pair>
+				</previous_runs>
+			</test>
 
-				<test name="test2">
-					<!-- current number of tests imported over past time interval (usually a week) -->
-					<current_run></current_run>
-					<!-- past number of tests over each subsequent run -->
-					<previous_runs>
-						<date>
-							<date></date>
-							<value></value>
-						</date>
-						<date>
-							<date></date>
-							<value></value>
-						</date>
-						<date>
-							<date></date>
-							<value></value>
-						</date>
-					</previous_runs>
-				</test>
+			<test test_name="test2">
+				<!-- current number of tests imported over past time interval (usually a week) -->
+				<current_run>14</current_run>
+				<!-- past number of tests over each subsequent run -->
+				<previous_runs>
+					<date_value_pair>
+						<date>2012-08-22</date>
+						<value>300</value>
+					</date_value_pair>
+					<date_value_pair>
+						<date>2012-08-22</date>
+						<value>500</value>
+					</date_value_pair>
+					<date_value_pair>
+						<date>2012-08-22</date>
+						<value>600</value>
+					</date_value_pair>
+				</previous_runs>
+			</test>
 		</site>
 	</sites>
 
