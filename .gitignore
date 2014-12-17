@@ -1,0 +1,4 @@
+*.pyc
+dump_mysql.sql
+dump_sqlite.sql
+redi_runs.db

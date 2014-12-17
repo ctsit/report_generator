@@ -1,0 +1,133 @@
+<html>
+   <head>
+<title> REDI Weeekly Report </title>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+
+
+<link rel="stylesheet" href="_css/examples.css" />
+<link rel="stylesheet" href="_css/tablesorter_blue/style.css" />
+<script src="_js/plugins/jquery.flot.js"> </script>
+<script src="http://tablesorter.com/__jquery.tablesorter.min.js"></script>
+
+<style>
+
+#sites {
+   background: #eee;
+   margin: 1em;
+   padding: 2em;
+   width: 200px;
+}
+
+#site-table {
+   padding: 1em;
+   border-collapse: collapse;
+   margin-top: 4em;
+}
+
+#site-table caption {
+   font-weight: bold;
+}
+
+#site-table {
+   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+   font-size: 12px;
+   margin: 45px;
+   width: 480px;
+   text-align: left;
+   border-collapse: collapse;
+}
+
+#site-table thead th {
+   font-size: 13px;
+   font-weight: normal;
+   padding: 8px;
+   background: #b9c9fe;
+   border-top: 4px solid #aabcfe;
+   border-bottom: 1px solid #fff;
+   color: #039;
+   background-image: url(/_img/tablesorter_blue/bg.gif);
+   background-repeat: no-repeat;
+   background-position: center right;
+   cursor: pointer;
+}
+
+#site-table thead tr .headerSortUp {
+   background-image: url(/_img/tablesorter_blue/asc.gif);
+}
+#site-table thead tr .headerSortDown {
+   background-image: url(/_img/tablesorter_blue/desc.gif);
+}
+
+#site-table td {
+   padding: 8px;
+   background: #e8edff;
+   border-bottom: 1px solid #fff;
+   color: #669;
+   border-top: 1px solid transparent;
+}
+#site-table tr:hover td {
+   background: #d0dafd;
+   color: #339;
+}
+
+#site-table tfoot td {
+   color: red;
+   border-top: solid 2px black;
+}
+
+#graph-info {
+   margin: 1em;
+}
+
+</style>
+
+   </head>
+
+<body>
+   <div id="header">
+      <img src="_img/redi_logo.png"/>
+      <span id="progress"><img alt="progress" src="_img/progress.gif"/></span>
+      <h2> Weekly Report </h2>
+      <h3> Generated {{ birthday }} </h3>
+      <p>
+         Previous week date range: <i>{{ periods['prev'].get_begin_date()}} to {{ periods['prev'].get_end_date()}}</i>
+         <br />
+         Current week date range: <i>{{ periods['curr'].get_begin_date()}} to {{ periods['curr'].get_end_date()}}</i>
+      </p>
+   </div>
+
+   <div id="content">
+
+      <div id="projects-container">
+         <ul id="projects"> </ul>
+      </div>
+
+      <div id=sites-container">
+         List of sites for the project:
+         <ul id="sites"></ul>
+      </div>
+
+      <div class="demo-container">
+         <div id="placeholder" class="demo-placeholder"></div>
+         <div id="graph-info">
+            Subject count changes over time for <span id="site-name"></span>
+         </div>
+      <div id="site-table-container"> </div>
+      </div>
+
+      <!--
+      <p>
+         <label><input id="enableTooltip" type="checkbox" checked="checked"></input>Enable tooltip</label>
+      </p>
+      -->
+   </div>
+
+<div id="footer"> </div>
+
+<script src="_js/util.js"> </script>
+<script src="_js/js.js"> </script>
+</body>
+</html>
