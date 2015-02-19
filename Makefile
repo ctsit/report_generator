@@ -37,6 +37,7 @@ WHERE \
 
 help:
 	@echo "Available tasks:"
+	@echo "\t run_app                : run the python web application for displaying the report"
 	@echo "\t show_tables            : show the tables in the database"
 	@echo "\t show_schema            : show the database DDL statements"
 	@echo "\t upgrade                : create fresh tables by executing queries from '$(SQL_UPGRADE)' "
@@ -50,7 +51,10 @@ help:
 	@echo "\t convert                : convert sqlite tables from '$(DB_FILE)' to the file $(SCHEMA_MYSQL)"
 
 run_app:
+	@test -f redi_runs.db || (echo 'Please execute "make from_scratch" to create the database' && exit 1)
 	python app/rediapi.py &
+	open -a "Google Chrome.app" http://127.0.0.1:5000/
+	redi_runs.db
 
 show_tables:
 	sqlite3 $(DB_FILE) .tables
