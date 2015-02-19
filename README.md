@@ -4,8 +4,30 @@ report_generator
 CTS-IT's software for generating summary reports from RED-I runs.
 
 
-To test the preliminary schema execute:
+# Database Schema
 
-make upgrade
-make sample_data_insert
-make sample_data_select
+To create a fresh SQLite database run:
+```
+make from_scratch
+```
+
+
+To view the structure of the tables in the SQLite database:
+
+```
+make show_schema
+```
+
+
+# Web Application
+
+To test the application run:
+
+```
+make run_app
+```
+
+
+# Screenshot
+
+![Test Data Report](images/sample_report.png "Test Data Report")
